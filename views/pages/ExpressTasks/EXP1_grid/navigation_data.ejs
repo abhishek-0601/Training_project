@@ -1,0 +1,96 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorted Data</title>
+    <link rel="stylesheet" href="/style/ExpressTasks/EXP1_grid.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navigation">
+        <div>
+          <a href="/EXP1/sorted?id=1&field=<%=field%>"
+            ><%if(count==1){%>
+            <button disabled><<</button>
+            <%}else{%>
+            <button><<</button>
+            <%}%></a
+          >
+        </div>
+
+        <div>
+          <a href="/EXP1/sorted?id=<%=Number(count)-1%>&field=<%=field%>"
+            ><%if(count==1){%>
+            <button disabled><</button>
+            <%}else{%>
+            <button><</button>
+            <%}%></a
+          >
+        </div>
+        <div><%=count%></div>
+
+        <div>
+          <a href="/EXP1/sorted?id=<%=Number(count)+1%>&field=<%=field%>"
+            ><%if(count==total/records){%>
+            <button disabled>></button>
+            <%}else{%>
+            <button>></button>
+            <%}%></a
+          >
+        </div>
+        <div>
+          <a href="/EXP1/sorted?id=250&field=<%=field%>"
+            ><%if(count==total/records){%>
+            <button disabled>>></button>
+            <%}else{%>
+            <button>>></button>
+            <%}%></a
+          >
+        </div>
+      </div>
+    </div>
+    <p>Ordered by : <%=field%></p>
+    <%try{%>
+    <table border="1">
+      <tr>
+        <th>
+          <a href="/EXP1/sorted?page=<%=count%>&field=std_id">Student ID</a>
+        </th>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=std_fname">First Name</a>
+        </th>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=std_lname">Last Name</a>
+        </th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=gender">Gender</a></th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=email">Email</a></th>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=dob">Date Of Birth</a>
+        </th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=city">City</a></th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=country">Country</a></th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=sem">Sem</a></th>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=entry_time">Entry Time</a>
+        </th>
+      </tr>
+      <%result.forEach(function (element) {%>
+      <tr>
+        <td><%= element.std_id%></td>
+        <td><%= element.std_fname%></td>
+        <td><%= element.std_lname%></td>
+        <td><%= element.gender%></td>
+        <td><%= element.email%></td>
+        <td><%= element.dob.toLocaleDateString();%></td>
+        <td><%= element.city%></td>
+        <td><%= element.country%></td>
+        <td><%= element.sem%></td>
+        <td><%= element.entry_time%></td>
+      </tr>
+      <% }); %>
+    </table>
+    <%}catch(error){%>
+    <h2>Unable to get data</h2>
+    <%}%>
+  </body>
+</html>
